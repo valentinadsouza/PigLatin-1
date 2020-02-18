@@ -11,7 +11,7 @@ bool isVowel(char ch);
 int main()
 {
     // creation of 5 character strings, each length MAX
-    char word[5][MAX]{ "This", "bypass" , "inward", "outward", "upward" };
+    char word[5][MAX]{ "string", "Hamburger" , "Rhythm", "queen", "zippitydoodah" };
 
 
 
@@ -45,6 +45,10 @@ char* toPigLatin(char* word) {
         return strncat(word, "-ay", 3);
     }
     else {
+        bool isCapitalized = word[0] == toupper(word[0]);
+        for (int i = 0; i < strlen(word); ++i) {
+            word[i] = tolower(word[i]); // change word to lowercase
+        }
         int i = 1;
         while (word[i] != '\0' && !isVowel(word[i]) && tolower(word[i] != 'y')) { // not reach the end of string increment i.
             ++i;
@@ -55,11 +59,14 @@ char* toPigLatin(char* word) {
         strncat(temp, word, i);
         strncat(temp, "ay", 2);
         strncpy(word, temp, strlen(temp));
+        if (isCapitalized) {
+            word[0] = toupper(word[0]);
+        }
     }
     return word;
 }
 
 bool isVowel(char ch) {
-    ch = tolower(ch);
+    //ch = tolower(ch);    lowercase is now being applied in above method.
     return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
 }
