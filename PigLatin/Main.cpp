@@ -11,7 +11,7 @@ bool isVowel(char ch);
 int main()
 {
     // creation of 5 character strings, each length MAX
-    char word[5][MAX]{ "This", "eat" , "inward", "outward", "upward" };
+    char word[5][MAX]{ "This", "bypass" , "inward", "outward", "upward" };
 
 
 
@@ -46,7 +46,7 @@ char* toPigLatin(char* word) {
     }
     else {
         int i = 1;
-        while (word[i] != '\0' && !isVowel(word[i])) { // not reach the end of string increment i.
+        while (word[i] != '\0' && !isVowel(word[i]) && tolower(word[i] != 'y')) { // not reach the end of string increment i.
             ++i;
         }
         char temp[MAX] = { '\0' };
